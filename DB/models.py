@@ -8,6 +8,7 @@ class User(Base):
     __tablename__ = 'user'
 
     user_id = sq.Column(sq.BIGINT, primary_key=True)
+    link = sq.Column(sq.String(length=100), unique=True)
     name = sq.Column(sq.String(length=70), unique=False)
     second_name = sq.Column(sq.String(length=70), unique=False)
     city = sq.Column(sq.String(length=70), unique=False)
