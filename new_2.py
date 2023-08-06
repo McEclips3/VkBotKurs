@@ -4,8 +4,8 @@ import vk_api
 from dotenv import load_dotenv
 from datetime import datetime
 
-from DB.defs import new_user as walt
 
+from DB.defs import new_user as walt
 
 
 class VkUser:
@@ -17,7 +17,6 @@ class VkUser:
         self.user_params = {'access_token': user_token, 'v': '5.131'}
         self.rel_dict = {}
         self.last_show = {}
-
 
     def gets_client(self, client_id):
 
@@ -53,7 +52,6 @@ class VkUser:
 
         return vk_user_id, vk_link, first_name, last_name, gender, city, age
 
-
     def rel_search(self, gender=0, city=0, age=40):
 
         rel_list = []
@@ -83,7 +81,6 @@ class VkUser:
             gender, city, age = self.gets_client(user_id)
 
         return first_name, last_name, vk_link
-
 
     def get_photos(self, user_id, upload):
         photos_url = self.url + 'photos.get'
@@ -124,20 +121,19 @@ class VkUser:
 
         return attachments
 
+
 if __name__ == '__main__':
     load_dotenv()
-    group_token = os.environ['group_token']
-    user_token = os.environ['user_token']
+    group_token_1 = os.environ['group_token']
+    user_token_1 = os.environ['user_token']
 
-    vk_session = vk_api.VkApi(token=group_token)
+    vk_session = vk_api.VkApi(token=group_token_1)
     vk = vk_session.get_api()
 
-    vk_manage = VkUser(group_token, user_token)
+    vk_manage = VkUser(group_token_1, user_token_1)
 
     # print(vk_manage.gets_client('uzao32'))
     user_info = vk_manage.gets_client('uzao32')
 
     walt(vk_user_id=user_info[0], vk_link=user_info[1], first_name=user_info[2], last_name=user_info[3],
          gender=user_info[4], city=user_info[5], age=user_info[6])
-
-
